@@ -9,14 +9,10 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo Hello world
 
-steps:
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(build.sourcesDirectory)'
-    includeRootFolder: false
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
